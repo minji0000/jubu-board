@@ -1,0 +1,8 @@
+# 모든 .properties 파일 제외
+*.properties
+
+# (추가 권장) 이클립스/빌드 관련 파일들
+/target/
+.settings/
+.classpath
+.project
