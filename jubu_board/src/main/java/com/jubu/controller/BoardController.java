@@ -1,9 +1,10 @@
 package com.jubu.controller;
 
 import com.jubu.entity.Board;
-import com.jubu.repository.BoardRepository;
+import com.jubu.service.BoardService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,32 +13,22 @@ import java.util.List;
 @RequestMapping("/api/board") // 모든 주소 앞에 /api/board가 붙습니다.
 public class BoardController {
 
-    @Autowired
-    private BoardRepository boardRepository;
+	@Autowired
+    private BoardService boardService; // 리포지토리 대신 서비스 주입
 
-    // 1. 전체 게시글 조회 (GET http://localhost:8080/api/board)
-    @GetMapping
-    public List<Board> getAllBoards() {
-        return boardRepository.findAll(); // SQL 없이 전체 목록 조회
+	@GetMapping("/list")
+    public List<Board> list() {
+        return boardService.getBoardList();
     }
-
-    // 2. 게시글 상세 조회 (GET http://localhost:8080/api/board/1)
-    @GetMapping("/{id}")
-    public Board getBoardById(@PathVariable Long id) {
-        return boardRepository.findById(id).orElse(null);
-    }
-
-    // 3. 게시글 작성 (POST http://localhost:8080/api/board)
-    // Postman에서 Body -> raw -> JSON 선택 후 데이터를 보내야 합니다.
-    @PostMapping
-    public Board createBoard(@RequestBody Board board) {
-        return boardRepository.save(board); // 인서트(Insert) 실행
-    }
-
-    // 4. 게시글 삭제 (DELETE http://localhost:8080/api/board/1)
-    @DeleteMapping("/{id}")
-    public String deleteBoard(@PathVariable Long id) {
-        boardRepository.deleteById(id);
-        return "ID " + id + "번 게시글이 삭제되었습니다.";
+	
+	@PostMapping("/save")
+    public ResponseEntity<?> save(@RequestBody Board board) {
+        try {
+            // 로그인 확인 없이 바로 전달받은 객체를 저장합니다.
+            boardService.saveBoard(board);
+            return ResponseEntity.ok("게시글 저장 성공!");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("저장 실패: " + e.getMessage());
+        }
     }
 }

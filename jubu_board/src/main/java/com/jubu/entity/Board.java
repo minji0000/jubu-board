@@ -1,11 +1,6 @@
 package com.jubu.entity;
 
 import javax.persistence.*; 
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "board")
@@ -14,7 +9,7 @@ public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id") // DB의 board_id 컬럼과 연결
-    private Long board_id; // PK (자동 증가)
+    private Long BoardId; // PK (자동 증가)
 
     @Column(name = "writer_id")
     private String writerId;
@@ -26,17 +21,10 @@ public class Board {
     private int view; // 조회수
     private int good; // 좋아요 수
 
-    private String mod_date; // 수정일 (자동 업데이트)
+    private String modDate; // 수정일 (자동 업데이트)
 
-    private String reg_date; // 등록일 (자동 생성)
+    private String regDate; // 등록일 (자동 생성)
 
-	public Long getBoard_id() {
-		return board_id;
-	}
-
-	public void setBoard_id(Long board_id) {
-		this.board_id = board_id;
-	}
 
 	public String getWriterId() {
 		return writerId;
@@ -78,20 +66,27 @@ public class Board {
 		this.good = good;
 	}
 
-	public String getMod_date() {
-		return mod_date;
+	public Long getBoardId() {
+		return BoardId;
 	}
 
-	public void setMod_date(String mod_date) {
-		this.mod_date = mod_date;
+	public void setBoardId(Long boardId) {
+		BoardId = boardId;
 	}
 
-	public String getReg_date() {
-		return reg_date;
+	public String getModDate() {
+		return modDate;
 	}
 
-	public void setReg_date(String reg_date) {
-		this.reg_date = reg_date;
+	public void setModDate(String modDate) {
+		this.modDate = modDate;
 	}
-	
+
+	public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
 }
