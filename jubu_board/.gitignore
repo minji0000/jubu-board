@@ -1,8 +1,19 @@
 # 모든 .properties 파일 제외
 *.properties
 
+# Eclipse Server 설정 관련
+.metadata/
+Servers/
+.recommenders/
+RemoteSystemsTempFiles/
+
+# Tomcat 등 서버 임시 파일 및 배포 로그
+tmp/
+logs/
+
 # (추가 권장) 이클립스/빌드 관련 파일들
-/target/
+target/
+bin/
 .settings/
 .classpath
 .project
