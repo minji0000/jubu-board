@@ -18,6 +18,9 @@ public class CommentDTO {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime regDate;
     
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime modDate;
+    
     // 트리 구조를 위한 자식 리스트
     private List<CommentDTO> children = new ArrayList<>();
 

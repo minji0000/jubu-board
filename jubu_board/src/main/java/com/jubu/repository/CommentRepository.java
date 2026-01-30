@@ -8,6 +8,9 @@ import com.jubu.entity.Comment;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
-    // 게시글 번호로 댓글 목록을 가져오는 메소드 (JPA가 알아서 쿼리 생성!)
-    List<Comment> findByBoardIdOrderByCommentIdAsc(int boardId);
+    // 특정 게시글 번호(boardId)에 해당하는 댓글만 리스트로 가져오기
+    List<Comment> findByBoardId(Integer boardId);
+    
+    // 게시글 번호로 찾되, 댓글 번호 순서대로 정렬해서 가져오기!
+    List<Comment> findByBoardIdOrderByCommentIdAsc(Integer boardId);
 }

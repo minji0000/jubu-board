@@ -10,9 +10,15 @@ public class BoardDTO {
     private Integer boardId;
     private String title;
     private String content;
-    private String writer;
+    private String writerId;
+    
+    private int view;
+    private int good;
     
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime regDate;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime modDate;
 
 }
