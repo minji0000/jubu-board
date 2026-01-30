@@ -1,0 +1,18 @@
+package com.jubu.dto;
+
+import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import lombok.Data;
+
+@Data
+public class BoardDTO {
+    private Integer boardId;
+    private String title;
+    private String content;
+    private String writer;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime regDate;
+
+}

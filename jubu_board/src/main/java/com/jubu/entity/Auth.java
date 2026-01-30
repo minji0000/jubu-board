@@ -1,6 +1,9 @@
 package com.jubu.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,12 +22,14 @@ public class Auth {
     private String password;
 
     private String nickname;
-
-    @Column(name = "updated_date", insertable = false, updatable = false)
-    private LocalDateTime updatedDate;
-
-    @Column(name = "created_date", insertable = false, updatable = false)
-    private LocalDateTime createdDate;
+    
+    @Column(name = "reg_date", insertable = false, updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime regDate;
+    
+    @Column(name = "mod_date", insertable = false, updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime modDate;
 
 	public Integer getUserId() {
 		return userId;
@@ -58,19 +63,19 @@ public class Auth {
 		this.nickname = nickname;
 	}
 
-	public LocalDateTime getUpdatedDate() {
-		return updatedDate;
+	public LocalDateTime getRegDate() {
+		return regDate;
 	}
 
-	public void setUpdatedDate(LocalDateTime updatedDate) {
-		this.updatedDate = updatedDate;
+	public void setRegDate(LocalDateTime regDate) {
+		this.regDate = regDate;
 	}
 
-	public LocalDateTime getCreatedDate() {
-		return createdDate;
+	public LocalDateTime getModDate() {
+		return modDate;
 	}
 
-	public void setCreatedDate(LocalDateTime createdDate) {
-		this.createdDate = createdDate;
+	public void setModDate(LocalDateTime modDate) {
+		this.modDate = modDate;
 	}
 }

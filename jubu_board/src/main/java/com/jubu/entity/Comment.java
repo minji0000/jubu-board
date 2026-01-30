@@ -29,6 +29,10 @@ public class Comment {
     @Column(name = "reg_date", insertable = false, updatable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime regDate;
+    
+    @Column(name = "mod_date", insertable = false, updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime modDate;
 
     @Transient 
     private List<Comment> children = new ArrayList<>();
@@ -87,5 +91,13 @@ public class Comment {
 
 	public void setChildren(List<Comment> children) {
 		this.children = children;
+	}
+
+	public LocalDateTime getModDate() {
+		return modDate;
+	}
+
+	public void setModDate(LocalDateTime modDate) {
+		this.modDate = modDate;
 	}
 }
