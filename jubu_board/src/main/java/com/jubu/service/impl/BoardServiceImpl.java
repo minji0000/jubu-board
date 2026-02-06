@@ -21,13 +21,19 @@ public class BoardServiceImpl implements BoardService {
     @Override
     @Transactional(readOnly = true)
     public List<Board> getBoardList() {
-        return boardRepository.findAll();
+    	return boardRepository.findAllByIsDeletedFalseOrderByRegDateDesc();
     }
 
 	@Override
 	public void saveBoard(Board board) {
 		// JPA의 save는 id가 없으면 INSERT, 있으면 UPDATE를 알아서 판단
 		boardRepository.save(board);
+	}
+
+	@Override
+	public void deleteBoard(Integer boardId) {
+		boardRepository.deleteById(boardId);
+		
 	}
 
 }

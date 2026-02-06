@@ -8,4 +8,6 @@ public interface BoardService {
     List<Board> getBoardList(); // 전체 목록 조회
 
     void saveBoard(Board board); // 저장 기능 
+
+	void deleteBoard(Integer boardId);
 }

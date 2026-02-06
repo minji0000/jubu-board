@@ -31,4 +31,15 @@ public class BoardController {
             return ResponseEntity.status(500).body("저장 실패: " + e.getMessage());
         }
     }
+	
+	// 특정 게시글 삭제 (Soft Delete 작동 확인용)
+    @DeleteMapping("/delete/{boardId}")
+    public ResponseEntity<String> delete(@PathVariable("boardId") Integer boardId) {
+        try {
+            boardService.deleteBoard(boardId); // 서비스의 삭제 메서드 호출
+            return ResponseEntity.ok(boardId + "번 게시글이 삭제되었습니다. (Soft Delete)");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("삭제 실패: " + e.getMessage());
+        }
+    }
 }
