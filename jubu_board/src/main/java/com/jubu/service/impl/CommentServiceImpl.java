@@ -77,7 +77,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional
     public void removeComment(Integer commentId) {
-        // 댓글 삭제
-        commentRepository.deleteById(commentId);
+        Comment entity = commentRepository.findById(commentId)
+                .orElseThrow(() -> new RuntimeException("댓글을 찾을 수 없습니다."));
+        
+        entity.delete();
     }
 }

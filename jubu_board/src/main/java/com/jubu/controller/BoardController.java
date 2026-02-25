@@ -1,6 +1,6 @@
 package com.jubu.controller;
 
-import com.jubu.entity.Board;
+import com.jubu.dto.BoardDTO;
 import com.jubu.service.BoardService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +17,15 @@ public class BoardController {
     private BoardService boardService; // 리포지토리 대신 서비스 주입
 
 	@GetMapping("/list")
-    public List<Board> list() {
+    public List<BoardDTO> list() {
         return boardService.getBoardList();
     }
 	
 	@PostMapping("/save")
-    public ResponseEntity<?> save(@RequestBody Board board) {
+    public ResponseEntity<?> save(@RequestBody BoardDTO boardDTO) {
         try {
             // 로그인 확인 없이 바로 전달받은 객체를 저장합니다.
-            boardService.saveBoard(board);
+            boardService.saveBoard(boardDTO);
             return ResponseEntity.ok("게시글 저장 성공!");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("저장 실패: " + e.getMessage());
