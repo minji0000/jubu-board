@@ -15,6 +15,7 @@ public class CommentDTO {
     private String content;
     private Integer parentId;
     
+    //서버 내부적으로는 Instant(UTC)로 관리, 화면에 뿌려줄 때만 "Asia/Seoul"로 출력
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private Instant regDate;
     

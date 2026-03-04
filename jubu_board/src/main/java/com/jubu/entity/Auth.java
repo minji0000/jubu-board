@@ -6,26 +6,32 @@ import javax.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * 1. 테이블명 'user'는 DB 예약어일 수 있으므로 @Table(name = "user")로 확실히 명시.
+ * 2. 레거시 환경의 Naming Strategy 이슈 방지를 위해 모든 컬럼에 @Column(name) 추가.
+ */
 @Data
-@EqualsAndHashCode(callSuper = false) //부모 필드들은 신경쓰지마 
+@EqualsAndHashCode(callSuper = false) 
 @Entity
-@Table(name = "user") // DB 테이블 이름은 user이므로 명시해줍니다!
+@Table(name = "user")
 @Getter
 @Setter
-@Builder 
-@AllArgsConstructor // Builder를 위해 모든 필드를 인자로 받는 생성자 필요
-@NoArgsConstructor  // JPA 기본 생성자 필요
+@Builder           // 빌더 패턴으로 객체 생성 가능하게
+@AllArgsConstructor // 빌더가 쓸 생성자
+@NoArgsConstructor  // JPA가 쓸 생성자
 public class Auth extends BaseTimeEntity {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "user_id") // DB 컬럼: user_id
     private Integer userId;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "username", nullable = false, unique = true) // 아이디
     private String username;
 
+    @Column(name = "password", nullable = false) // 비밀번호
     private String password;
 
+    @Column(name = "nickname") // 닉네임
     private String nickname;
 }

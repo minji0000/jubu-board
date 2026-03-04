@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService {
     @Transactional(readOnly = true)
     public List<BoardDTO> getBoardList() {
     	
-    	List<Board> entities = boardRepository.findAllByIsDeletedFalseOrderByRegDateDesc();
+    	List<Board> entities = boardRepository.findAllByOrderByRegDateDesc();
     	
     	List<BoardDTO> dtos = new ArrayList<>();
         for (Board entity : entities) {
